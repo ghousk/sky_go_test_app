@@ -14,9 +14,7 @@ import com.innovativequest.sky_go_test_app.api.DataService
 import com.innovativequest.sky_go_test_app.db.DataListItemResponseDao
 import com.innovativequest.sky_go_test_app.db.AppDb
 import com.innovativequest.sky_go_test_app.testing.OpenForTesting
-import com.innovativequest.sky_go_test_app.util.RateLimiter
 import com.innovativequest.sky_go_test_app.model.*
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -36,8 +34,6 @@ class DataListItemsRepository @Inject constructor(
     private val dataService: DataService
 ) {
 
-    private val repoListRateLimit = RateLimiter<String>(10, TimeUnit.MINUTES)
-
     fun loadDataListItemResponses(): LiveData<Resource<DataListItemResponse>> {
         return object : NetworkBoundResource<DataListItemResponse, DataListItemResponse>(appExecutors) {
             override fun saveCallResult(item: DataListItemResponse) {
@@ -45,7 +41,7 @@ class DataListItemsRepository @Inject constructor(
             }
 
             override fun shouldFetch(data: DataListItemResponse?): Boolean {
-                return data?.items == null ||data.items.isEmpty() /*|| repoListRateLimit.shouldFetch()*/  // TODO: Enable this
+                return data?.items == null ||data.items.isEmpty()
             }
 
             override fun loadFromDb() = dataListItemDao.loadAllDataListItemResponses()
@@ -53,7 +49,6 @@ class DataListItemsRepository @Inject constructor(
             override fun createCall() = dataService.getDataItems(100, "desc", "reputation", "stackoverflow")
 
             override fun onFetchFailed() {
-                //repoListRateLimit.reset() // TODO: Enable this
             }
         }.asLiveData()
     }
@@ -65,7 +60,7 @@ class DataListItemsRepository @Inject constructor(
             }
 
             override fun shouldFetch(data: DataListItemResponse?): Boolean {
-                return data?.items == null ||data.items.isEmpty() /*|| repoListRateLimit.shouldFetch()*/  // TODO: Enable this
+                return data?.items == null ||data.items.isEmpty()
             }
 
             override fun loadFromDb() = dataListItemDao.loadAllDataListItemResponses()
@@ -73,7 +68,6 @@ class DataListItemsRepository @Inject constructor(
             override fun createCall() = dataService.getDataItemById(100, "desc", "reputation", "stackoverflow", userId)
 
             override fun onFetchFailed() {
-                //repoListRateLimit.reset() // TODO: Enable this
             }
         }.asLiveData()
     }
