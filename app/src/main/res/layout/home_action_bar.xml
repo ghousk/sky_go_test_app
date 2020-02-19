@@ -12,7 +12,7 @@
         android:id="@+id/home_actionbar_title_centre"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
-        style="@style/heading_medium"
+        style="@style/AppTheme.TextAppearance.H2Medium"
         android:gravity="center"
         android:textAlignment="center"
         android:textColor="@android:color/black"

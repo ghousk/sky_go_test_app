@@ -37,7 +37,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/list_item_layout_width"
         android:layout_height="@dimen/list_item_layout_height"
         app:cardUseCompatPadding="true">
 
@@ -48,7 +48,7 @@
             <ImageView
                 android:id="@+id/avatar"
                 android:layout_height="match_parent"
-                android:layout_width="@dimen/list_item_layout_height"
+                android:layout_width="match_parent"
                 app:imageUrl="@{dataListItem.poster}"
                 app:imageRequestListener="@{imageRequestListener}"
                 app:transitionName="@{dataListItem.poster}"
@@ -65,7 +65,8 @@
                 android:orientation="vertical"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/avatar">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
                     android:id="@+id/name"
@@ -74,6 +75,7 @@
                     android:layout_marginStart="@dimen/default_margin"
                     android:layout_marginTop="16dp"
                     android:text="@{dataListItem.title}"
+                    style="@style/AppTheme.TextAppearance.BodyLight"
                     tools:text="display item name" />
 
                 <TextView
@@ -83,6 +85,7 @@
                     android:layout_marginStart="@dimen/default_margin"
                     android:layout_marginTop="8dp"
                     android:text="@{dataListItem.genre}"
+                    style="@style/AppTheme.TextAppearance.BodyLight"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="this is some description more description more description" />
 
@@ -94,6 +97,8 @@
                     android:layout_marginTop="@dimen/default_margin"
                     android:drawableStart="@android:drawable/btn_star"
                     android:gravity="center"
+                    android:visibility="gone"
+                    style="@style/AppTheme.TextAppearance.BodyLight"
                     android:text="@{`` + dataListItem.year}"
                     tools:text="5" />
             </LinearLayout>

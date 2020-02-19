@@ -23,6 +23,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.transition.TransitionInflater
 import com.innovativequest.sky_go_test_app.AppExecutors
 import com.innovativequest.sky_go_test_app.R
@@ -102,6 +103,7 @@ class DataListItemsFragment : Fragment(), Injectable {
         ) { dataListItem ->
             navController().navigate(DataListItemsFragmentDirections.showRepo(dataListItem.id.toString()))
         }
+        binding.repoList.layoutManager = GridLayoutManager(context, 3)
         binding.repoList.adapter = rvAdapter
         this.adapter = rvAdapter
         initRepoList()
