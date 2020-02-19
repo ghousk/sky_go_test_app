@@ -47,8 +47,8 @@ object TestUtil {
                    userType: String,
                    reputation: Int,
                    profileImage: String) = DataListItem(
-        userId = id,
-        displayName = name,
+        id = id,
+        title = name,
         accountId = accountId,
         userType = userType,
         badgeCounts = BadgeCounts(4, 15, 100),

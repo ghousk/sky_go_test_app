@@ -27,22 +27,15 @@ abstract class DataListItemResponseDao {
     abstract fun insert(vararg dataListItemResponse: DataListItemResponse)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertContributors(contributors: List<Contributor>)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertDataListItemResponses(dataListItemResponse: DataListItemResponse)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract fun createDataListItemResponseIfNotExists(dataListItemResponse: DataListItemResponse): Long
 
-    @Query("SELECT * FROM dataListItemResponse WHERE hasMore = :hasMore")
-    abstract fun load(hasMore: Boolean): LiveData<DataListItemResponse>
+    @Query("SELECT * FROM dataListItemResponse")
+    abstract fun load(): LiveData<DataListItemResponse>
 
-    @Query(
-        """
-        SELECT * FROM DataListItemResponse
-        ORDER BY quotaRemaining DESC"""
-    )
+    @Query("SELECT * FROM dataListItemResponse")
     abstract fun loadAllDataListItemResponses(): LiveData<DataListItemResponse>
 
 }

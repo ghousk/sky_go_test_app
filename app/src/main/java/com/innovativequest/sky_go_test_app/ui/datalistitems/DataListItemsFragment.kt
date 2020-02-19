@@ -100,7 +100,7 @@ class DataListItemsFragment : Fragment(), Injectable {
             dataBindingComponent = dataBindingComponent,
             appExecutors = appExecutors
         ) { dataListItem ->
-            navController().navigate(DataListItemsFragmentDirections.showRepo(dataListItem.userId.toString()))
+            navController().navigate(DataListItemsFragmentDirections.showRepo(dataListItem.id.toString()))
         }
         binding.repoList.adapter = rvAdapter
         this.adapter = rvAdapter

@@ -21,19 +21,10 @@ import retrofit2.http.Query
 interface DataService {
 
     @GET(AppConstants.GET_LIST_ITEMS)
-    fun getDataItems(
-        @Query("pagesize") count: Int,
-        @Query("order") order: String,
-        @Query("sort") sort: String,
-        @Query("site") site: String
-    ): LiveData<ApiResponse<DataListItemResponse>>
+    fun getDataItems(): LiveData<ApiResponse<DataListItemResponse>>
 
     @GET(AppConstants.GET_LIST_ITEM_BY_ID)
     fun getDataItemById(
-        @Query("pagesize") count: Int,
-        @Query("order") order: String,
-        @Query("sort") sort: String,
-        @Query("site") site: String,
-        @Path("userId") userId : String
+        @Path("id") id : String
     ): LiveData<ApiResponse<DataListItemResponse>>
 }

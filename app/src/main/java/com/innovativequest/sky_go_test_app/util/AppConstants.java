@@ -9,7 +9,7 @@ public class AppConstants {
 
 
     // ENV DEPENDENT BASE URLs
-    public static final String BASE_URL_DEV = "https://api.stackexchange.com/2.2/";
+    public static final String BASE_URL_DEV = "https://movies-sample.herokuapp.com/api/";
     private static final String DEFAULT_LOCALE = "en-GB";
 
     public static String getLocale()
@@ -17,9 +17,9 @@ public class AppConstants {
         return DEFAULT_LOCALE;
     }
 
-    public static final String GET_LIST_ITEMS = "users";
+    public static final String GET_LIST_ITEMS = "movies";
 
-    public static final String GET_LIST_ITEM_BY_ID = "users/{userId}";
+    public static final String GET_LIST_ITEM_BY_ID = "912312/{id}";
 
 
 }

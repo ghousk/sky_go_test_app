@@ -31,8 +31,8 @@ class DataListItemResponseDaoTest : DbTest() {
             "registered", 4,
             "https://www.gravatar.com/avatar/e3a181e9cdd4757a8b416d93878770c5?s=128&d=identicon&r=PG")
         db.dataListItemResponseDao().insert(repo)
-        val loaded = getValue(db.dataListItemResponseDao().load(true))
+        val loaded = getValue(db.dataListItemResponseDao().load())
         assertThat(loaded, notNullValue())
-        assertThat(loaded.items?.get(0)?.displayName, `is`("BalusC0"))
+        assertThat(loaded.items?.get(0)?.title, `is`("BalusC0"))
     }
 }

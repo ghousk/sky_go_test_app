@@ -19,8 +19,7 @@ import com.innovativequest.sky_go_test_app.model.*
  */
 @Database(
     entities = [
-        DataListItemResponse::class,
-        Contributor::class],
+        DataListItemResponse::class],
     version = 1,
     exportSchema = false
 )

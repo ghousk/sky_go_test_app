@@ -26,34 +26,34 @@ class ItemDetailViewModel @Inject constructor(repository: DataListItemsRepositor
         get() = _repoId
     val dataListItemResponseById: LiveData<Resource<DataListItemResponse>> = Transformations
         .switchMap(_repoId) { input ->
-            input.ifExists { userId ->
-                repository.loadDataListItemResponseById(userId)
+            input.ifExists { movieId ->
+                repository.loadDataListItemResponseById(movieId)
             }
         }
 
     val dataListItems: LiveData<Resource<DataListItemResponse>> = repository.loadDataListItemResponses()
 
     fun retry() {
-        val userId = _repoId.value?.userId
-        if (userId != null) {
-            _repoId.value = RepoId(userId)
+        val id = _repoId.value?.id
+        if (id != null) {
+            _repoId.value = RepoId(id)
         }
     }
 
-    fun setId(userId: String) {
-        val update = RepoId(userId)
+    fun setId(id: String) {
+        val update = RepoId(id)
         if (_repoId.value == update) {
             return
         }
         _repoId.value = update
     }
 
-    data class RepoId(val userId: String) {
+    data class RepoId(val id: String) {
         fun <T> ifExists(f: (String) -> LiveData<T>): LiveData<T> {
-            return if (userId.isBlank()) {
+            return if (id.isBlank()) {
                 AbsentLiveData.create()
             } else {
-                f(userId)
+                f(id)
             }
         }
     }

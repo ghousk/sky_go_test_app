@@ -29,13 +29,13 @@ class DataListItemsAdapter(
     appExecutors = appExecutors,
     diffCallback = object : DiffUtil.ItemCallback<DataListItem>() {
         override fun areItemsTheSame(oldItem: DataListItem, newItem: DataListItem): Boolean {
-            return oldItem.userId == newItem.userId
-                    && oldItem.displayName == newItem.displayName
+            return oldItem.id == newItem.id
+                    && oldItem.title == newItem.title
         }
 
         override fun areContentsTheSame(oldItem: DataListItem, newItem: DataListItem): Boolean {
-            return oldItem.accountId == newItem.accountId
-                    && oldItem.reputation == newItem.reputation
+            return oldItem.year == newItem.year
+                    && oldItem.genre == newItem.genre
         }
     }
 ) {

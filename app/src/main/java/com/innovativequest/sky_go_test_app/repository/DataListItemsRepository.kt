@@ -46,14 +46,14 @@ class DataListItemsRepository @Inject constructor(
 
             override fun loadFromDb() = dataListItemDao.loadAllDataListItemResponses()
 
-            override fun createCall() = dataService.getDataItems(100, "desc", "reputation", "stackoverflow")
+            override fun createCall() = dataService.getDataItems()
 
             override fun onFetchFailed() {
             }
         }.asLiveData()
     }
 
-    fun loadDataListItemResponseById(userId: String): LiveData<Resource<DataListItemResponse>> {
+    fun loadDataListItemResponseById(id: String): LiveData<Resource<DataListItemResponse>> {
         return object : NetworkBoundResource<DataListItemResponse, DataListItemResponse>(appExecutors) {
             override fun saveCallResult(item: DataListItemResponse) {
                 dataListItemDao.insertDataListItemResponses(item)
@@ -65,7 +65,7 @@ class DataListItemsRepository @Inject constructor(
 
             override fun loadFromDb() = dataListItemDao.loadAllDataListItemResponses()
 
-            override fun createCall() = dataService.getDataItemById(100, "desc", "reputation", "stackoverflow", userId)
+            override fun createCall() = dataService.getDataItemById(id)
 
             override fun onFetchFailed() {
             }

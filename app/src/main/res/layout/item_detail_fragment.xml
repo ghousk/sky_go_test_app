@@ -67,8 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:imageRequestListener="@{imageRequestListener}"
-                app:imageUrl="@{dataListItemResponse.data.items[listItemIndex].profileImage}"
-                app:transitionName="@{args.userId}"
+                app:imageUrl="@{dataListItemResponse.data.items[listItemIndex].poster}"
+                app:transitionName="@{args.id}"
                 android:layout_gravity="center"
                 android:padding="6dp"
                 android:background="@android:color/white"
@@ -104,7 +104,7 @@
                 android:textAllCaps="false"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{dataListItemResponse.data.items[listItemIndex].displayName}"
+                android:text="@{dataListItemResponse.data.items[listItemIndex].title}"
                 tools:text="How to Demolish an Entire Civilization and Still Feel Good About Yourself in the Morning" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/subItemNameTv"
@@ -119,7 +119,7 @@
                 android:gravity="start|top"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{@string/user_type_fmt(dataListItemResponse.data.items[listItemIndex].userType)}"
+                android:text="@{@string/user_type_fmt(dataListItemResponse.data.items[listItemIndex].genre)}"
                 tools:text="By: Ann Cecilia Diana Emily Fanny Gertrude Hypatia Inez Jane Kate Louisa Maud Nora Orphelia Quince Rebecca Starkey Teresa Ulysis Venus Winifred Xenophen Yetty Zeus Pepper"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -139,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
-                android:text="@{@string/body_item1_fmt(dataListItemResponse.data.items[listItemIndex].badgeCounts.gold)}"
+                android:text="@{@string/body_item1_fmt(dataListItemResponse.data.items[listItemIndex].year)}"
                 tools:text="Comments: 225632"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="20dp"
-                android:text="@{@string/body_item2_fmt(dataListItemResponse.data.items[listItemIndex].reputation)}"
+                android:text="@{@string/body_item2_fmt(dataListItemResponse.data.items[listItemIndex].id)}"
                 tools:text="mylooooooooooooooooooooooooooooongtextnameeeeeeeeeeeeeee"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="20dp"
-                android:text="@{@string/body_item3_fmt(dataListItemResponse.data.items[listItemIndex].location)}"
+                android:text="@{@string/body_item3_fmt(dataListItemResponse.data.items[listItemIndex].id)}"
                 tools:text="mylooooooooooooooooooooooooooooongtextnameeeeeeeeeeeeeee"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -166,7 +166,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="20dp"
-                android:text="@{@string/body_item4_fmt(dataListItemResponse.data.items[listItemIndex].userId)}"
+                android:visibility="gone"
+                android:text="@{@string/body_item4_fmt(dataListItemResponse.data.items[listItemIndex].id)}"
                 tools:text="mylooooooooooooooooooooooooooooongtextnameeeeeeeeeeeeeee"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -175,7 +176,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="20dp"
-                android:text="@{@string/body_item5_fmt(dataListItemResponse.data.items[listItemIndex].websiteUrl)}"
+                android:visibility="gone"
+                android:text="@{@string/body_item5_fmt(dataListItemResponse.data.items[listItemIndex].id)}"
                 tools:text="mylooooooooooooooooooooooooooooongtextnameeeeeeeeeeeeeee"/>
 
 
@@ -185,7 +187,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="20dp"
-                android:text="@{@string/body_item6_fmt(dataListItemResponse.data.items[listItemIndex].accountId)}"
+                android:visibility="gone"
+                android:text="@{@string/body_item6_fmt(dataListItemResponse.data.items[listItemIndex].id)}"
                 tools:text="mylooooooooooooooooooooooooooooongtextnameeeeeeeeeeeeeee"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

@@ -104,7 +104,7 @@ class ItemDetailFragment : Fragment(), Injectable {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        itemDetailViewModel.setId(params.userId)
+        itemDetailViewModel.setId(params.id)
         binding.setLifecycleOwner(viewLifecycleOwner)
         binding.args = params
         binding.dataListItemResponse = itemDetailViewModel.dataListItemResponseById
@@ -123,7 +123,7 @@ class ItemDetailFragment : Fragment(), Injectable {
             // TODO: In a real App the following doesn't need to be done
             it?.data?.items?.let { listItems ->
                 for(dataListItem in listItems){
-                    if(dataListItem.userId == params.userId.toInt()){
+                    if(dataListItem.id == params.id.toInt()){
                         binding.listItemIndex = listItems.indexOf(dataListItem)
                         break
                     }
