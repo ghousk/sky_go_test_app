@@ -3,12 +3,8 @@
     <string name="retry">Retry</string>
     <string name="unknown_error">Unknown Error</string>
     <string name="a11y_user_photo">user photo</string>
-    <string name="a11y_user_name">user name</string>
-    <string name="search_hint">search repositories</string>
-    <string name="repo_full_name"><b>%s</b>/%s</string>
-    <string name="empty_search_result">No results for <b>%s</b></string>
-    <string name="a11y_contributor_avatar">contributor avatar</string>
-    <string name="user_type_fmt">User Type %s</string>
+    <string name="search_hint">search</string>
+    <string name="user_type_fmt">Genre %s</string>
     <string name="body_item1_fmt">Gold Badge Counts : %s</string>
     <string name="body_item2_fmt">Reputation : %s</string>
     <string name="body_item3_fmt">Location : %s</string>

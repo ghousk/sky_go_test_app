@@ -46,7 +46,7 @@
             type="com.bumptech.glide.request.RequestListener&lt;Drawable>" />
         <variable
             name="listItemIndex"
-            type="Integer" />
+            type="int" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

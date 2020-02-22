@@ -9,6 +9,8 @@
 package com.innovativequest.sky_go_test_app.binding
 
 import android.graphics.drawable.Drawable
+import android.text.TextWatcher
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -25,6 +27,11 @@ class FragmentBindingAdapters @Inject constructor(val fragment: Fragment) {
     @BindingAdapter(value = ["imageUrl", "imageRequestListener"], requireAll = false)
     fun bindImage(imageView: ImageView, url: String?, listener: RequestListener<Drawable?>?) {
         Glide.with(fragment).load(url).listener(listener).into(imageView)
+    }
+
+    @BindingAdapter("textChangedListener")
+    fun bindTextWatcher(editText: EditText, textWatcher: TextWatcher?) {
+        editText.addTextChangedListener(textWatcher)
     }
 }
 

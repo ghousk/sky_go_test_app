@@ -37,27 +37,55 @@
             name="imageRequestListener"
             type="com.bumptech.glide.request.RequestListener&lt;Drawable>" />
 
+        <variable
+            name="textChangeListener"
+            type="android.text.TextWatcher" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:id="@+id/repo_list"
-            app:layoutManager="LinearLayoutManager"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            tools:listitem="@layout/data_list_item" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/queryEntryEtv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_default_edit_text_height"
+                android:layout_marginTop="@dimen/app_search_text_box_margin_vertical"
+                android:layout_marginBottom="@dimen/app_search_text_box_margin_vertical"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:paddingTop="@dimen/app_text_box_padding_vertical"
+                android:paddingBottom="@dimen/app_text_box_padding_vertical"
+                android:paddingStart="@dimen/app_text_box_padding_horizontal"
+                android:paddingEnd="@dimen/app_text_box_padding_horizontal"
+                android:maxLines="1"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                app:textChangedListener="@{textChangeListener}"
+                android:background="@drawable/rounded_corners_rectangular_brand_medium_bg"
+                android:hint="@string/search_hint"
+                android:textColorHint="@color/app_grey_2"
+                android:drawablePadding="@dimen/default_margin"
+                android:drawableStart="@drawable/ic_filter_items_search"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/repo_list"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/data_list_item" />
+        </LinearLayout>
 
         <include
             layout="@layout/loading_state"

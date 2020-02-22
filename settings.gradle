@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='base_mvvm_arch_app'
+rootProject.name='sky_go_test_app'
