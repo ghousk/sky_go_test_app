@@ -15,6 +15,7 @@ import com.innovativequest.sky_go_test_app.db.AppDb
 import com.innovativequest.sky_go_test_app.db.DataListItemResponseDao
 import com.innovativequest.sky_go_test_app.util.AppConstants
 import com.innovativequest.sky_go_test_app.util.LiveDataCallAdapterFactory
+import com.innovativequest.sky_go_test_app.util.PreferencesManager
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -48,4 +49,8 @@ class AppModule {
     fun provideRepoDao(db: AppDb): DataListItemResponseDao {
         return db.dataListItemResponseDao()
     }
+
+    @Singleton
+    @Provides
+    fun providePreferencesManager(app: Application) = PreferencesManager(app.applicationContext)
 }

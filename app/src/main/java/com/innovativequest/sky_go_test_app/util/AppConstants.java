@@ -5,9 +5,6 @@ package com.innovativequest.sky_go_test_app.util;
  */
 public class AppConstants {
 
-    private static final String TAG = "AppConstants";
-
-
     // ENV DEPENDENT BASE URLs
     public static final String BASE_URL_DEV = "https://movies-sample.herokuapp.com/api/";
     private static final String DEFAULT_LOCALE = "en-GB";
@@ -19,8 +16,8 @@ public class AppConstants {
 
     public static final String GET_LIST_ITEMS = "movies";
 
-    public static final String GET_LIST_ITEM_BY_ID = "912312/{id}";
+    public static final String GET_LIST_ITEM_BY_ID = "movies/{id}";
 
-
+    public static final int REFRESH_TIME_OUT_IN_MILLIS = 600000;
 }
 
