@@ -7,29 +7,6 @@ import com.google.gson.reflect.TypeToken
 
 object Converters {
 
-        @TypeConverter
-        @JvmStatic
-        fun fromString(data: String?): BadgeCounts {
-
-            var gson = Gson()
-            if (data == null) {
-                return BadgeCounts()
-            }
-
-            val objectType = object : TypeToken<BadgeCounts>() {
-            }.type
-
-            return gson.fromJson(data, objectType)
-        }
-
-        @TypeConverter
-        @JvmStatic
-        fun toString(someObject: BadgeCounts): String {
-            var gson = Gson()
-
-            return gson.toJson(someObject)
-        }
-
     @TypeConverter
     @JvmStatic
     fun fromStringToDataListItemResponse(data: String?): List<DataListItem>? {

@@ -8,51 +8,35 @@
 
 package com.innovativequest.sky_go_test_app.util
 
-import com.innovativequest.sky_go_test_app.model.BadgeCounts
 import com.innovativequest.sky_go_test_app.model.DataListItem
 import com.innovativequest.sky_go_test_app.model.DataListItemResponse
 
 
 object TestUtil {
 
-    fun createRepos(count: Int, id: Int, name: String, accountId : Int,
-                    userType: String,
-                    reputation: Int,
-                    profileImage: String): DataListItemResponse {
+    fun createRepos(count: Int, aYear: String?, aGenre: String?, aId: Int?,
+                    aTitle: String?, aPoster: String?): DataListItemResponse {
         val dataListItemArray = ArrayList<DataListItem>()
 
         for (i in 0..count) {
             dataListItemArray.add( createRepo(
-                id = id,
-                name = name + i,
-                accountId = accountId,
-                userType = userType,
-                reputation = reputation,
-                profileImage = profileImage
+                aYear = aYear,
+                aGenre = aGenre,
+                aId = aId,
+                aTitle = aTitle + i,
+                aPoster = aPoster
             ) )
         }
 
-        return DataListItemResponse(count, 100, true, dataListItemArray)
+        return DataListItemResponse(dataListItemArray)
 
     }
 
-//    fun createRepo(owner: String, name: String, description: String) = createRepo(
-//        id = DataListItem.UNKNOWN_ID,
-//        owner = owner,
-//        name = name,
-//        description = description
-//    )
-
-    fun createRepo(id: Int, name: String, accountId : Int,
-                   userType: String,
-                   reputation: Int,
-                   profileImage: String) = DataListItem(
-        id = id,
-        title = name,
-        accountId = accountId,
-        userType = userType,
-        badgeCounts = BadgeCounts(4, 15, 100),
-        reputation = reputation,
-        profileImage = profileImage
+    private fun createRepo(aYear: String?, aGenre: String?, aId: Int?, aTitle: String?, aPoster: String?) = DataListItem(
+        year = aYear,
+        genre = aGenre,
+        id = aId,
+        title = aTitle,
+        poster = aPoster
     )
 }

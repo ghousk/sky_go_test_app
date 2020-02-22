@@ -27,12 +27,12 @@ class DataListItemResponseDaoTest : DbTest() {
 
     @Test
     fun insertAndRead() {
-        val repo = TestUtil.createRepos(2, 29407, "BalusC", 14332,
-            "registered", 4,
-            "https://www.gravatar.com/avatar/e3a181e9cdd4757a8b416d93878770c5?s=128&d=identicon&r=PG")
+        val repo = TestUtil.createRepos(2, "2017", "Action", 11241,
+            "Jumanji: welcome to the jungle",
+            "https://image.tmdb.org/t/p/w370_and_h556_bestv2/bXrZ5iHBEjH7WMidbUDQ0U2xbmr.jpg")
         db.dataListItemResponseDao().insert(repo)
         val loaded = getValue(db.dataListItemResponseDao().load())
         assertThat(loaded, notNullValue())
-        assertThat(loaded.items?.get(0)?.title, `is`("BalusC0"))
+        assertThat(loaded.items[0].title, `is`("Jumanji: welcome to the jungle0"))
     }
 }

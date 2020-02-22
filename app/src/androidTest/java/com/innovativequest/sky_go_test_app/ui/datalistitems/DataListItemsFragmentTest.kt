@@ -22,16 +22,9 @@ import androidx.navigation.NavController
 import com.innovativequest.sky_go_test_app.R
 import com.innovativequest.sky_go_test_app.binding.FragmentBindingAdapters
 import com.innovativequest.sky_go_test_app.testing.SingleFragmentActivity
-import com.innovativequest.sky_go_test_app.util.CountingAppExecutorsRule
-import com.innovativequest.sky_go_test_app.util.DataBindingIdlingResourceRule
-import com.innovativequest.sky_go_test_app.util.EspressoTestUtil
-import com.innovativequest.sky_go_test_app.util.RecyclerViewMatcher
-import com.innovativequest.sky_go_test_app.util.TaskExecutorWithIdlingResourceRule
-import com.innovativequest.sky_go_test_app.util.TestUtil
-import com.innovativequest.sky_go_test_app.util.ViewModelUtil
-import com.innovativequest.sky_go_test_app.util.mock
 import com.innovativequest.sky_go_test_app.model.DataListItemResponse
 import com.innovativequest.sky_go_test_app.model.Resource
+import com.innovativequest.sky_go_test_app.util.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -53,6 +46,7 @@ class DataListItemsFragmentTest {
     @Rule
     @JvmField
     val dataBindingIdlingResourceRule = DataBindingIdlingResourceRule(activityRule)
+    private lateinit var preferencesManager: PreferencesManager
     private lateinit var viewModel: DataListItemsViewModel
     private lateinit var mockBindingAdapter: FragmentBindingAdapters
     private val repoListData = MutableLiveData<Resource<DataListItemResponse>>()
@@ -61,6 +55,7 @@ class DataListItemsFragmentTest {
 
     @Before
     fun init() {
+        preferencesManager = mock(PreferencesManager::class.java)
         viewModel = mock(DataListItemsViewModel::class.java)
         `when`(viewModel.dataListItems).thenReturn(repoListData)
         mockBindingAdapter = mock(FragmentBindingAdapters::class.java)
@@ -82,21 +77,20 @@ class DataListItemsFragmentTest {
     @Test
     fun loadRepos() {
         val repos = setRepos(2)
-        repos.items?.let {
-            for (pos in repos.items!!.indices) {
-                val repo = repos.items!![pos]
+        repos.items.let {
+            for (pos in repos.items.indices) {
+                val repo = repos.items[pos]
                 onView(listMatcher().atPosition(pos)).apply {
-                    check(matches(hasDescendant(withText(repo.displayName))))
-                    check(matches(hasDescendant(withText(repo.userType))))
-                    check(matches(hasDescendant(withText(repo.reputation.toString()))))
+                    check(matches(hasDescendant(withText(repo.title))))
+                    check(matches(hasDescendant(withText(repo.genre))))
                 }
             }
         }
 
-        setRepos(3).items?.let {
-            val repo3 = setRepos(3).items!![2]
+        setRepos(3).items.let {
+            val repo3 = setRepos(3).items[2]
             onView(listMatcher().atPosition(2)).check(
-                matches(hasDescendant(withText(repo3.displayName)))
+                matches(hasDescendant(withText(repo3.title)))
             )
         }
     }
@@ -107,20 +101,12 @@ class DataListItemsFragmentTest {
         onView(listMatcher().atPosition(0)).check(doesNotExist())
     }
 
-    @Test
-    fun nulledRepoList() {
-        setRepos(5)
-        onView(listMatcher().atPosition(1)).check(matches(isDisplayed()))
-        repoListData.postValue(null)
-        onView(listMatcher().atPosition(0)).check(doesNotExist())
-    }
-
     private fun listMatcher() = RecyclerViewMatcher(R.id.repo_list)
 
     private fun setRepos(count: Int): DataListItemResponse {
-        val dataListItemResponse =   TestUtil.createRepos(count, 47188524, "name", 56789,
-            "User", 5,
-            "https://avatars2.githubusercontent.com/u/5959435?v=4")
+        val dataListItemResponse =   TestUtil.createRepos(count, "2017", "Action", 11241,
+            "Jumanji: welcome to the jungle",
+            "https://image.tmdb.org/t/p/w370_and_h556_bestv2/bXrZ5iHBEjH7WMidbUDQ0U2xbmr.jpg")
         repoListData.postValue(Resource.success(dataListItemResponse))
         return dataListItemResponse
     }
