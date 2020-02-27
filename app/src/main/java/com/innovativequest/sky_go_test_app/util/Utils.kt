@@ -18,7 +18,7 @@ object Utils {
 
 
     fun getCurrentTime(): Long {
-        return Date().getTime()
+        return Date().time
     }
 
 }
